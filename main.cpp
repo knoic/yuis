@@ -1,4 +1,5 @@
 #include<iostream>
+#include<stdio.h>
 #include<string>
 #include<fstream>
 using namespace std;
@@ -63,11 +64,15 @@ void cal_duty()           //税计算
 
 
 };
-void read()
+int read()
 {
-	char name_1[20];
-	cout<<"请输入工号："<<endl;
-	scanf("%",name_1);
+	FILE *fp ;
+				fp=fopen("gz.dat" , "rb" );
+                if ( fp == NULL )
+                {return -1 ;
+				}
+                fread( (char*)zg_read , sizeof(struct zggz), 1 , fp ); //从文件中读n个结构体的数据
+				fclose(fp); 
 	
 }       //读取职工工资数据函数,主函数执行时要调用和必须调用的第一个函数
 void write();        //保存职工工资数据函数
@@ -80,15 +85,17 @@ void del();				//删除职工工资数据函数
 
 int main()
 {
-	int choose_num;
+	for(int for_main=0;for_main<=1;)
+	{int choose_num;
+	struct zggz zg_read[100];
 	
-	 ifstream fin("gz.dat",ios::in);//以输入形式打开gz.dat
+	/* ifstream fin("gz.dat",ios::in);//以输入形式打开gz.dat
 	if(!fin)
 	{
         cout<<"Cannot open the file.\n";
     	exit(1);
 	}
-	/* fstream fout("gz.dat", ios::out);
+	 fstream fout("gz.dat", ios::out);
    fout.write((char*)&a, sizeof(A));
     fout.close();
     fstream fin("gz.dat", ios::in);
@@ -103,13 +110,22 @@ int main()
 	{
 	switch(choose_num)
 	{
-	    case 1:cout<<"已进入查询模块";break;
-	case 2:cout<<"已进入修改模块";break;
-	case 3: 
-		{
+	    case 1:cout<<"已进入查询模块";
+			{
+				FILE *fp ;
+				fp=fopen("gz.dat" , "rb" );
+                if ( fp == NULL )
+                {return -1 ;
+				}
+                fread( (char*)zg_read , sizeof(struct zggz), 1 , fp ); //从文件中读n个结构体的数据
+				fclose(fp);
+				break;
+			}
+	    case 2:cout<<"已进入修改模块";
+			
+	    case 3: 
+			{
 			cout<<"已进入添加模块";
-			char c_name[20],c_num[10];
-			float c_pay_gw,c_pay_xinji,c_pay_zw,c_pay_xiaoji;
 			int n;
 			cout<<"请输入需存入的职工人数："<<endl;
 			cin>>n;
@@ -117,34 +133,28 @@ int main()
 			struct zggz zg[100];
 			for(int i=0;i<n;++i)
 			{
-				//scanf("%s %s %f %f %f %f",zg[i].num,zg[i].name,zg[i].pay_gw,zg[i].pay_xinji,zg[i].pay_zw,zg[i].pay_xiaoji);
+				
 				cin>>zg[i].num>>zg[i].name>>zg[i].pay_gw>>zg[i].pay_xinji>>zg[i].pay_zw>>zg[i].pay_xiaoji;
 			}
 			
 		
-			cout<<zg[0].pay_gw
-				;
-			
-	
-		/*	Zg add_zg(&c_name,&c_num,c_pay_gw,c_pay_xinji,c_pay_zw,c_pay_xiaoji);
-		add_zg.disp();   */
-			 ofstream fout("gz.dat",ios::out);//以输出形式打开gz.dat
-    if(!fout)
-	    {
-		    cout<<"Cannot open the file.\n";
-		    exit(1);
-	    }
-			for(int j=0;j<n;++j)
-			{
-				fout<<zg[j];
-                fout.close();
-			}
-
-
-
-			break;
+			cout<<zg[0].pay_gw;
+			FILE *fp ;
+            fp=fopen("gz.dat" , "wb" );
+            if ( fp == NULL )
+            return -1 ;
+            fwrite( (char*)zg , sizeof(struct zggz), 1 , fp ); //将数组写入文件
+            fclose(fp);
+            fp=fopen("gz.dat" , "rb" );
+            if ( fp == NULL )
+            return -1 ;
+            fread( (char*)zg_read , sizeof(struct zggz), 1 , fp ); //从文件中读三个结构体的数据，也可以一个一个的读
+            fclose(fp);
+            cout<<zg_read[0].name<<zg_read[0].num<<zg_read[0].pay_gw;
+		    return 0;
+		    break;
 		}
-
+		
 
 
 
@@ -156,15 +166,17 @@ int main()
 
 	case 4:cout<<"已进入删除模块";break;
 	case 5:cout<<"已进入浏览模块";break;
-	case 6:
-
-		cout<<"已保存";break;
-	case 7:cout<<"系统退出，欢迎再次使用！";break;
+	case 6:cout<<"已保存";break;
+	case 7:
+		{cout<<"系统退出，欢迎再次使用！";
+		   for_main=2;break;
+		}
 	}
 	}
 	else{
 		cout<<"请重新选择功能"<<endl;
-	return 0;}
+	}
+	}
 
    
 	system("pause");
