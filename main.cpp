@@ -3,6 +3,7 @@
 #include<string>
 #include<fstream>
 using namespace std;
+long n;
 struct zggz
 {
     char name[20];
@@ -14,7 +15,7 @@ struct zggz
 	float pay_yf;          //应发工资
 	float pay_sf;         //实发工资
 	float duty;             //个人所得税
-};
+}zg_read[100];
 
 
 void cal_duty()           //税计算
@@ -26,11 +27,20 @@ void cal_duty()           //税计算
 int read()
 {
 	FILE*fp;
-fp=fopen("gz.dat","rb");// localfile文件名
-fseek(fp,0,SEEK_SET);
-fseek(fp,0,SEEK_END);
-long longBytes=ftell(fp)/sizeof(struct zggz);// 统计人数
-cout<<longBytes;
+    fp=fopen("gz.dat","rb");// localfile文件名
+    fseek(fp,0,SEEK_SET);
+    fseek(fp,0,SEEK_END);
+    long longBytes=ftell(fp)/sizeof(struct zggz);// 统计人数
+    n=longBytes;
+    fseek(fp,0,SEEK_SET);
+    if ( fp == NULL )
+	{
+		return -1 ;
+	}
+    fread( (char*)zg_read , sizeof(struct zggz), n , fp ); //从文件中读n个结构体的数据
+	fclose(fp);
+    cout<<n<<endl;
+    cout<<zg_read[2].name;
 	return 0;
 }       //读取职工工资数据函数,主函数执行时要调用和必须调用的第一个函数
 void write();        //保存职工工资数据函数
@@ -61,11 +71,7 @@ read();
 			{
 				FILE *fp ;
 				fp=fopen("gz.dat" , "rb" );
-                if ( fp == NULL )
-                {return -1 ;
-				}
-                fread( (char*)zg_read , sizeof(struct zggz), 1 , fp ); //从文件中读n个结构体的数据
-				fclose(fp);
+                
 				break;
 			}
 	    case 2:cout<<"已进入修改模块";
