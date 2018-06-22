@@ -54,7 +54,32 @@ int write()
     fwrite( (char*)zggz , sizeof(struct zggz), n , fp ); //将数组写入文件
 	fclose(fp);
 };        //保存职工工资数据函数
-void find();		 //查询职工工资数据函数
+void find()
+{
+	char name_find[10];
+	cout<<"请输入查询工号："<<endl;
+	cin>>name_find[10];
+	for(int i=0;i<n;i++)
+	{
+		if(!strcmp( char *name_find,  char zggz[i].num);)
+		{
+			cout<<"工号："<<zggz[i].num<<endl;
+		    cout<<"名字："<<zggz[i].name<<endl;
+		    cout<<"岗位工资："<<zggz[i].pay_gw<<endl;
+		    cout<<"薪级工资："<<zggz[i].pay_xinji<<endl;
+		    cout<<"职务津贴："<<zggz[i].pay_zw<<endl;
+		    cout<<"绩效工资："<<zggz[i].pay_xiaoji<<endl;
+		    cout<<"应发工资："<<zggz[i].pay_yf<<endl;
+		    cout<<"个人所得税："<<zggz[i].duty<<endl;
+		    cout<<"实发工资："<<zggz[i].pay_sf<<endl;
+		}
+		else
+		{
+			cout<<"查无此人"<<endl;
+		}
+	}
+	
+};		 //查询职工工资数据函数
 void list()
 {
 	for(int i=0;i<n;i++)
@@ -105,8 +130,8 @@ read();
 	{
 	    case 1:cout<<"已进入查询模块";
 			{
-				list();
-				break;
+				find();
+			    break;
 			}
 	    case 2:cout<<"已进入修改模块";
 			
@@ -117,25 +142,7 @@ read();
 			
 			
 		
-		/*	cout<<zg[0].pay_gw;
-			FILE *fp ;
-            fp=fopen("gz.dat" , "a+" );
-            if ( fp == NULL )
-            return -1 ;
-            fwrite( (char*)zg , sizeof(struct zggz), n , fp ); //将数组写入文件
-		
-
-        
-            fclose(fp);
-            fp=fopen("gz.dat" , "rb" );
-            if ( fp == NULL )
-            return -1 ;
-            fread( (char*)zg_read , sizeof(struct zggz), 1 , fp ); //从文件中读三个结构体的数据，也可以一个一个的读
-            fclose(fp);
-            cout<<zg_read[0].name<<zg_read[0].num<<zg_read[0].pay_gw;
-		    return 0;
-		    
-			*/break;
+		break;
 		}
 		
 
@@ -148,7 +155,12 @@ read();
 
 
 	case 4:cout<<"已进入删除模块";break;
-	case 5:cout<<"已进入浏览模块";break;
+	case 5:
+		{
+			cout<<"已进入浏览模块";
+			list();
+			break;
+		}
 	case 6:
 		{
 			cout<<"已保存";
