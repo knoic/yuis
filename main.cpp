@@ -55,7 +55,21 @@ int write()
 	fclose(fp);
 };        //保存职工工资数据函数
 void find();		 //查询职工工资数据函数
-void list();			//浏览职工工资数据函数
+void list()
+{
+	for(int i=0;i<n;i++)
+	{
+		cout<<"工号："<<zggz[i].num<<endl;
+		cout<<"名字："<<zggz[i].name<<endl;
+		cout<<"岗位工资："<<zggz[i].pay_gw<<endl;
+		cout<<"薪级工资："<<zggz[i].pay_xinji<<endl;
+		cout<<"职务津贴："<<zggz[i].pay_zw<<endl;
+		cout<<"绩效工资："<<zggz[i].pay_xiaoji<<endl;
+		cout<<"应发工资："<<zggz[i].pay_yf<<endl;
+		cout<<"个人所得税："<<zggz[i].duty<<endl;
+		cout<<"实发工资："<<zggz[i].pay_sf<<endl;
+	}
+}			//浏览职工工资数据函数
 void modify();			//修改职工工资数据函数
 void del();				//删除职工工资数据函数
 void add()
@@ -91,8 +105,7 @@ read();
 	{
 	    case 1:cout<<"已进入查询模块";
 			{
-				
-                
+				list();
 				break;
 			}
 	    case 2:cout<<"已进入修改模块";
