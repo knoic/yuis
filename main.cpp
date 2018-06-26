@@ -58,15 +58,34 @@ int write()
 int find()
 {
 	char gonghao[10];
-	cout<<"请输入查询工号："<<endl;
-	cin>>gonghao;
+	printf("请输入查询工号：\n");
+	scanf("%s", gonghao);
 	for(int i=0;i<n;i++)
 	{
 	
 	
 	if(!strcmp(gonghao,zggz[i].num))
 		{
-			cout<<"工号："<<zggz[i].num<<endl;
+			printf("工号：");
+			printf("%s",zggz[i].num);
+			printf("\n名字：");
+			printf("%s",zggz[i].name);
+			printf("\n岗位工资：");
+			printf("%f",zggz[i].pay_gw);
+			printf("\n薪级工资：");
+			printf("%f",zggz[i].pay_xinji);
+			printf("\n职务津贴：");
+			printf("%f",zggz[i].pay_zw);
+			printf("\n绩效工资：");
+			printf("%f",zggz[i].pay_xiaoji);
+			printf("\n应发工资：");
+			printf("%f",zggz[i].pay_yf);
+			printf("\n个人所得税：");
+			printf("%f",zggz[i].duty);
+			printf("\n实发工资：");
+			printf("%f",zggz[i].pay_sf);
+            
+			/*cout<<"工号："<<zggz[i].num<<endl;
 		    cout<<"名字："<<zggz[i].name<<endl;
 		    cout<<"岗位工资："<<zggz[i].pay_gw<<endl;
 		    cout<<"薪级工资："<<zggz[i].pay_xinji<<endl;
@@ -75,6 +94,7 @@ int find()
 		    cout<<"应发工资："<<zggz[i].pay_yf<<endl;
 		    cout<<"个人所得税："<<zggz[i].duty<<endl;
 		    cout<<"实发工资："<<zggz[i].pay_sf<<endl;
+			*/
 			break;
 		}
 	
