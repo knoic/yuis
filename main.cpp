@@ -126,7 +126,46 @@ void modify()
 	}
 
 };			//修改职工工资数据函数
-void del();				//删除职工工资数据函数
+void del()
+{
+	char gonghao[10],choose[1];
+	printf("请输入需要修改的职工工号\n");
+	scanf("%s", gonghao);
+	for(int i=0;i<n;i++)
+	{
+		if(!strcmp(gonghao,zggz[i].num))
+		{
+			printf("是否确认删除该记录?（请输入y/n）\n");
+			scanf("%s", choose);
+			if(!strcmp(choose,"y"))
+			{
+				printf("开始删除\n");
+				for(int j=i;j<n-1;j++)
+				{
+					strcpy(zggz[j].num,zggz[j+1].num);
+					strcpy(zggz[j].name,zggz[j+1].name);
+					zggz[j].pay_gw=zggz[j+1].pay_gw;
+					zggz[j].pay_sf=zggz[j+1].pay_sf;
+					zggz[j].pay_xiaoji=zggz[j+1].pay_xiaoji;
+					zggz[j].pay_xinji=zggz[j+1].pay_xinji;
+					zggz[j].pay_yf=zggz[j+1].pay_yf;
+					zggz[j].pay_zw=zggz[j+1].pay_zw;
+				}
+				n=n-1;
+				printf("删除完成，请及时保存\n");
+
+			}
+			else
+			{
+				printf("放弃删除\n");
+			}
+
+
+			
+		}
+	
+	}
+};				//删除职工工资数据函数
 void add()
 {
 	int add_num;
@@ -187,7 +226,12 @@ read();
 
 
 
-	case 4:cout<<"已进入删除模块";break;
+	case 4:
+		{
+			cout<<"已进入删除模块";
+			del();
+			break;
+		}
 	case 5:
 		{
 			cout<<"已进入浏览模块";
