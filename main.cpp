@@ -56,14 +56,14 @@ int write()
 };        //保存职工工资数据函数
 int find()
 {
-	char name_find[10];
+	char gonghao[10];
 	cout<<"请输入查询工号："<<endl;
-	cin>>name_find;
+	cin>>gonghao;
 	for(int i=0;i<n;i++)
 	{
-		strcmp(name_find,zggz[i].num);
-		cout<<strcmp(name_find,zggz[i].num);
-	if(!strcmp(name_find,zggz[i].num))
+	
+	
+	if(!strcmp(gonghao,zggz[i].num))
 		{
 			cout<<"工号："<<zggz[i].num<<endl;
 		    cout<<"名字："<<zggz[i].name<<endl;
@@ -74,15 +74,18 @@ int find()
 		    cout<<"应发工资："<<zggz[i].pay_yf<<endl;
 		    cout<<"个人所得税："<<zggz[i].duty<<endl;
 		    cout<<"实发工资："<<zggz[i].pay_sf<<endl;
+			break;
 		}
-		else
-		{
-			cout<<"查无此人"<<endl;
-		}
+	
+	}
+	if(i=n+1)
+	{
+		cout<<"查无吃人";
 	}
 	return 0;
 	
 };		 //查询职工工资数据函数
+
 void list()
 {
 	for(int i=0;i<n;i++)
@@ -98,7 +101,31 @@ void list()
 		cout<<"实发工资："<<zggz[i].pay_sf<<endl;
 	}
 }			//浏览职工工资数据函数
-void modify();			//修改职工工资数据函数
+void modify()
+{
+	char gonghao[10];
+	cout<<"请输入查询工号："<<endl;
+	cin>>gonghao;
+	for(int i=0;i<n;i++)
+	{
+		if(!strcmp(gonghao,zggz[i].num))
+		{
+			cout<<"开始修改"<<endl;
+		    cout<<"名字：";
+			cin>>zggz[i].name;
+		    cout<<"岗位工资：";
+			cin>>zggz[i].pay_gw;
+		    cout<<"薪级工资：";
+			cin>>zggz[i].pay_xinji;
+		    cout<<"职务津贴：";
+			cin>>zggz[i].pay_zw;
+		    cout<<"绩效工资：";
+			cin>>zggz[i].pay_xiaoji;
+		}
+	
+	}
+
+};			//修改职工工资数据函数
 void del();				//删除职工工资数据函数
 void add()
 {
@@ -131,22 +158,25 @@ read();
 	{
 	switch(choose_num)
 	{
-	    case 1:cout<<"已进入查询模块";
+	    case 1:
 			{
-				find();
+				cout<<"已进入查询模块";
+			    find();
 			    break;
 			}
-	    case 2:cout<<"已进入修改模块";
+		case 2:
+			{
+				cout<<"已进入修改模块";
+			    modify();
+			    break;
+			}
 			
 	    case 3: 
 			{
 			cout<<"已进入添加模块";
 			add();
-			
-			
-		
-		break;
-		}
+			break;
+			}
 		
 
 
