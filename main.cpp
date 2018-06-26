@@ -54,14 +54,16 @@ int write()
     fwrite( (char*)zggz , sizeof(struct zggz), n , fp ); //将数组写入文件
 	fclose(fp);
 };        //保存职工工资数据函数
-void find()
+int find()
 {
 	char name_find[10];
 	cout<<"请输入查询工号："<<endl;
-	cin>>name_find[10];
+	cin>>name_find;
 	for(int i=0;i<n;i++)
 	{
-		if(!strcmp( char *name_find,  char zggz[i].num);)
+		strcmp(name_find,zggz[i].num);
+		cout<<strcmp(name_find,zggz[i].num);
+	if(!strcmp(name_find,zggz[i].num))
 		{
 			cout<<"工号："<<zggz[i].num<<endl;
 		    cout<<"名字："<<zggz[i].name<<endl;
@@ -78,6 +80,7 @@ void find()
 			cout<<"查无此人"<<endl;
 		}
 	}
+	return 0;
 	
 };		 //查询职工工资数据函数
 void list()
@@ -119,7 +122,7 @@ read();
 	for(int for_main=0;for_main<=1;)
 	{
 		int choose_num;
-	    struct zggz zg_read[100];
+	   
 	cout<<"欢迎使用职工管理系统"<<endl;
 	cout<<"请选择你要使用的功能（键盘输入数字，回车确认）"<<endl;
 	cout<<"1.查询"<<"\n"<<"2.修改"<<"\n"<<"3.添加"<<"\n"<<"4.删除"<<"\n"<<"5.浏览"<<"\n"<<"6.保存"<<"\n"<<"7.退出"<<endl;
