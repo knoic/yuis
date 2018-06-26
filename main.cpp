@@ -43,6 +43,7 @@ int read()
     cout<<zggz[2].name;
 	return 0;
 }       //读取职工工资数据函数,主函数执行时要调用和必须调用的第一个函数
+
 int write()
 {
 	FILE *fp ;
@@ -78,9 +79,9 @@ int find()
 		}
 	
 	}
-	if(i=n+1)
+	if(i==n)
 	{
-		cout<<"查无吃人";
+		printf("查无此人\n");
 	}
 	return 0;
 	
@@ -124,6 +125,10 @@ void modify()
 		}
 	
 	}
+	if(i==n)
+	{
+		printf("查无此人\n");
+	}
 
 };			//修改职工工资数据函数
 void del()
@@ -165,6 +170,11 @@ void del()
 		}
 	
 	}
+	if(i==n)
+	{
+		printf("查无此人\n");
+	}
+
 };				//删除职工工资数据函数
 void add()
 {
