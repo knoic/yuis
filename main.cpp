@@ -195,7 +195,9 @@ void modify()
 			scanf("%f", &zggz[i].pay_zw);
 			printf("\n绩效工资：\n");
 			scanf("%f", &zggz[i].pay_xiaoji);
-			grsds(i);
+			zggz[i].pay_yf=zggz[i].pay_gw+zggz[i].pay_xiaoji+zggz[i].pay_xinji+zggz[i].pay_zw;
+		    grsds(i);
+		    zggz[i].pay_sf=zggz[i].pay_yf-zggz[i].duty;
 		}
 	
 	}
@@ -270,7 +272,8 @@ void add()
 		printf("\n绩效工资：\n");
 		scanf("%f", &zggz[i].pay_xiaoji);
 		zggz[i].pay_yf=zggz[i].pay_gw+zggz[i].pay_xiaoji+zggz[i].pay_xinji+zggz[i].pay_zw;
-		grsds(i); 
+		grsds(i);
+		zggz[i].pay_sf=zggz[i].pay_yf-zggz[i].duty;
 
 		/*cin>>zggz[i].num>>zggz[i].name>>zggz[i].pay_gw>>zggz[i].pay_xinji>>zggz[i].pay_zw>>zggz[i].pay_xiaoji;
 		zggz[i].pay_yf=zggz[i].pay_gw+zggz[i].pay_xiaoji+zggz[i].pay_xinji+zggz[i].pay_zw;*/
