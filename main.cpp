@@ -1,3 +1,27 @@
+/*************************************************
+Copyright (C), 1988-1999, Huawei Tech. Co., Ltd.
+File name: main.cpp
+Author: Zhuchuankai Version: 0.1 Date: 2018-6-28// 作者、版本及完成日期
+Description: // 用于详细说明此程序文件完成的主要功能，与其他模块
+// 或函数的接口，输出值、取值范围、含义及参数间的控
+// 制、顺序、独立或依赖等关系
+Others: // 其它内容的说明
+Function List: // 主要函数列表，每条记录应包括函数名及功能简要说明
+1.grsds(int i)---------税计算
+2.read()---------------读取职工工资数据函数,主函数执行时要调用和必须调用的第一个函数
+3.write()--------------保存职工工资数据函数
+4.find()---------------查询职工工资数据函数
+5.list()---------------浏览职工工资数据函数
+6.modify()-------------修改职工工资数据函数
+7.del()----------------删除职工工资数据函数
+8.add()----------------添加职工工资数据函数
+History: // 修改历史记录列表，每条修改记录应包括修改日期、修改
+// 者及修改内容简述
+1. Date:
+Author:
+Modification:
+2. ...
+*************************************************/
 #include<iostream>
 #include<stdio.h>
 #include<string>
@@ -21,53 +45,66 @@ struct zggz
 void grsds(int i)           //税计算
 {
     printf("税计算：");
+
 	if(zggz[i].pay_yf<=500)
     {
         zggz[i].duty=zggz[i].pay_yf*0.05;
     }
+
     else if(zggz[i].pay_yf<=2000 && zggz[i].pay_yf>500)
     {
         zggz[i].duty=(zggz[i].pay_yf-500)*0.1+500*0.05;
     }
+
     else if(zggz[i].pay_yf<=5000 && zggz[i].pay_yf>2000)
     {
          zggz[i].duty=(zggz[i].pay_yf-2000)*0.15+1500*0.1+500*0.05;
     }
+
     else if(zggz[i].pay_yf<=20000 && zggz[i].pay_yf>5000)
     {
         zggz[i].duty=(zggz[i].pay_yf-5000)*0.20+3000*0.15+1500*0.1+500*0.05;
     }
+
     else if(zggz[i].pay_yf<=40000 && zggz[i].pay_yf>20000)
     {
         zggz[i].duty=(zggz[i].pay_yf-20000)*0.25+15000*0.2+3000*0.15+1500*0.1+500*0.05;
     }
+
 	else if(zggz[i].pay_yf<=40000 && zggz[i].pay_yf>20000)
     {
         zggz[i].duty=(zggz[i].pay_yf-20000)*0.25+15000*0.2+3000*0.15+1500*0.1+500*0.05;
     }
+
 	else if(zggz[i].pay_yf<=60000 && zggz[i].pay_yf>40000)
     {
         zggz[i].duty=(zggz[i].pay_yf-40000)*0.3+20000*0.25+15000*0.2+3000*0.15+1500*0.1+500*0.05;
     }
+
 	else if(zggz[i].pay_yf<=80000 && zggz[i].pay_yf>60000)
     {
         zggz[i].duty=(zggz[i].pay_yf-60000)*0.35+20000*0.3+20000*0.25+15000*0.2+3000*0.15+1500*0.1+500*0.05;
     }
+
 	else if(zggz[i].pay_yf<=100000 && zggz[i].pay_yf>80000)
     {
         zggz[i].duty=(zggz[i].pay_yf-80000)*0.4+20000*0.35+20000*0.3+20000*0.25+15000*0.2+3000*0.15+1500*0.1+500*0.05;
     }
+
 	else if(zggz[i].pay_yf>100000)
     {
         zggz[i].duty=(zggz[i].pay_yf-100000)*0.45+20000*0.4+20000*0.35+20000*0.3+20000*0.25+15000*0.2+3000*0.15+1500*0.1+500*0.05;
     }
+
 }
+
 int read()
 {
 	FILE*fp;
-    fp=fopen("gz.dat","a+");// localfile文件名
+    fp=fopen("gz.dat", "a+");// localfile文件名
     fseek(fp,0,SEEK_SET);
     fseek(fp,0,SEEK_END);
+
     long longBytes=ftell(fp)/sizeof(struct zggz);// 统计人数
     n=longBytes;
     fseek(fp,0,SEEK_SET);
@@ -75,16 +112,19 @@ int read()
 	{
 		return -1 ;
 	}
+
     fread( (char*)zggz , sizeof(struct zggz), n , fp ); //从文件中读n个结构体的数据
 	fclose(fp);
+
     cout<<n<<endl;                          //测试用人数统计
+
 	return 0;
 }       //读取职工工资数据函数,主函数执行时要调用和必须调用的第一个函数
 
 int write()
 {
 	FILE *fp ;
-    fp=fopen("gz.dat" , "wb" );
+    fp=fopen("gz.dat", "wb");
     if ( fp == NULL )
     {
 		return -1 ;
@@ -92,6 +132,7 @@ int write()
     fwrite( (char*)zggz , sizeof(struct zggz), n , fp ); //将数组写入文件
 	fclose(fp);
 };        //保存职工工资数据函数
+
 int find()
 {
 	char gonghao[10];
@@ -119,18 +160,7 @@ int find()
 			printf("%f",zggz[i].duty);
 			printf("\n实发工资：");
 			printf("%f",zggz[i].pay_sf);
-            
-			/*cout<<"工号："<<zggz[i].num<<endl;
-		    cout<<"名字："<<zggz[i].name<<endl;
-		    cout<<"岗位工资："<<zggz[i].pay_gw<<endl;
-		    cout<<"薪级工资："<<zggz[i].pay_xinji<<endl;
-		    cout<<"职务津贴："<<zggz[i].pay_zw<<endl;
-		    cout<<"绩效工资："<<zggz[i].pay_xiaoji<<endl;
-		    cout<<"应发工资："<<zggz[i].pay_yf<<endl;
-		    cout<<"个人所得税："<<zggz[i].duty<<endl;
-		    cout<<"实发工资："<<zggz[i].pay_sf<<endl;
-			*/
-			break;
+            break;
 		}
 	
 	}
@@ -164,17 +194,9 @@ void list()
 		printf("%g",zggz[i].duty);
 		printf("\n实发工资：");
 		printf("%g",zggz[i].pay_sf);
-		/*cout<<"工号："<<zggz[i].num<<endl;
-		cout<<"名字："<<zggz[i].name<<endl;
-		cout<<"岗位工资："<<zggz[i].pay_gw<<endl;
-		cout<<"薪级工资："<<zggz[i].pay_xinji<<endl;
-		cout<<"职务津贴："<<zggz[i].pay_zw<<endl;
-		cout<<"绩效工资："<<zggz[i].pay_xiaoji<<endl;
-		cout<<"应发工资："<<zggz[i].pay_yf<<endl;
-		cout<<"个人所得税："<<zggz[i].duty<<endl;
-		cout<<"实发工资："<<zggz[i].pay_sf<<endl;*/
 	}
 }			//浏览职工工资数据函数
+
 void modify()
 {
 	char gonghao[10];
@@ -207,6 +229,7 @@ void modify()
 	}
 
 };			//修改职工工资数据函数
+
 void del()
 {
 	char gonghao[10],choose[1];
@@ -234,15 +257,11 @@ void del()
 				}
 				n=n-1;
 				printf("删除完成，请及时保存\n");
-
 			}
 			else
 			{
 				printf("放弃删除\n");
 			}
-
-
-			
 		}
 	
 	}
@@ -250,8 +269,8 @@ void del()
 	{
 		printf("查无此人\n");
 	}
-
 };				//删除职工工资数据函数
+
 void add()
 {
 	int add_num;
@@ -274,14 +293,10 @@ void add()
 		zggz[i].pay_yf=zggz[i].pay_gw+zggz[i].pay_xiaoji+zggz[i].pay_xinji+zggz[i].pay_zw;
 		grsds(i);
 		zggz[i].pay_sf=zggz[i].pay_yf-zggz[i].duty;
-
-		/*cin>>zggz[i].num>>zggz[i].name>>zggz[i].pay_gw>>zggz[i].pay_xinji>>zggz[i].pay_zw>>zggz[i].pay_xiaoji;
-		zggz[i].pay_yf=zggz[i].pay_gw+zggz[i].pay_xiaoji+zggz[i].pay_xinji+zggz[i].pay_zw;*/
 	}
 		n=n+add_num;
 
 };
-
 
 int main()
 {
@@ -345,8 +360,6 @@ int main()
 			printf("\n请重新选择功能");
 		}
 	}
-
-   	
-	system("pause");
+    system("pause");
 	return 0;
 }
