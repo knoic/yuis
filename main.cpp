@@ -18,16 +18,54 @@ struct zggz
 }zggz[100];
 
 
-void cal_duty()           //税计算
+void grsds(int i)           //税计算
 {
-
-
-
-};
+    printf("税计算：");
+	if(zggz[i].pay_yf<=500)
+    {
+        zggz[i].duty=zggz[i].pay_yf*0.05;
+    }
+    else if(zggz[i].pay_yf<=2000 && zggz[i].pay_yf>500)
+    {
+        zggz[i].duty=(zggz[i].pay_yf-500)*0.1+500*0.05;
+    }
+    else if(zggz[i].pay_yf<=5000 && zggz[i].pay_yf>2000)
+    {
+         zggz[i].duty=(zggz[i].pay_yf-2000)*0.15+1500*0.1+500*0.05;
+    }
+    else if(zggz[i].pay_yf<=20000 && zggz[i].pay_yf>5000)
+    {
+        zggz[i].duty=(zggz[i].pay_yf-5000)*0.20+3000*0.15+1500*0.1+500*0.05;
+    }
+    else if(zggz[i].pay_yf<=40000 && zggz[i].pay_yf>20000)
+    {
+        zggz[i].duty=(zggz[i].pay_yf-20000)*0.25+15000*0.2+3000*0.15+1500*0.1+500*0.05;
+    }
+	else if(zggz[i].pay_yf<=40000 && zggz[i].pay_yf>20000)
+    {
+        zggz[i].duty=(zggz[i].pay_yf-20000)*0.25+15000*0.2+3000*0.15+1500*0.1+500*0.05;
+    }
+	else if(zggz[i].pay_yf<=60000 && zggz[i].pay_yf>40000)
+    {
+        zggz[i].duty=(zggz[i].pay_yf-40000)*0.3+20000*0.25+15000*0.2+3000*0.15+1500*0.1+500*0.05;
+    }
+	else if(zggz[i].pay_yf<=80000 && zggz[i].pay_yf>60000)
+    {
+        zggz[i].duty=(zggz[i].pay_yf-60000)*0.35+20000*0.3+20000*0.25+15000*0.2+3000*0.15+1500*0.1+500*0.05;
+    }
+	else if(zggz[i].pay_yf<=100000 && zggz[i].pay_yf>80000)
+    {
+        zggz[i].duty=(zggz[i].pay_yf-80000)*0.4+20000*0.35+20000*0.3+20000*0.25+15000*0.2+3000*0.15+1500*0.1+500*0.05;
+    }
+	else if(zggz[i].pay_yf>100000)
+    {
+        zggz[i].duty=(zggz[i].pay_yf-100000)*0.45+20000*0.4+20000*0.35+20000*0.3+20000*0.25+15000*0.2+3000*0.15+1500*0.1+500*0.05;
+    }
+}
 int read()
 {
 	FILE*fp;
-    fp=fopen("gz.dat","rb");// localfile文件名
+    fp=fopen("gz.dat","a+");// localfile文件名
     fseek(fp,0,SEEK_SET);
     fseek(fp,0,SEEK_END);
     long longBytes=ftell(fp)/sizeof(struct zggz);// 统计人数
@@ -39,8 +77,7 @@ int read()
 	}
     fread( (char*)zggz , sizeof(struct zggz), n , fp ); //从文件中读n个结构体的数据
 	fclose(fp);
-    cout<<n<<endl;
-    cout<<zggz[2].name;
+    cout<<n<<endl;                          //测试用人数统计
 	return 0;
 }       //读取职工工资数据函数,主函数执行时要调用和必须调用的第一个函数
 
@@ -62,9 +99,7 @@ int find()
 	scanf("%s", gonghao);
 	for(int i=0;i<n;i++)
 	{
-	
-	
-	if(!strcmp(gonghao,zggz[i].num))
+		if(!strcmp(gonghao,zggz[i].num))
 		{
 			printf("工号：");
 			printf("%s",zggz[i].num);
@@ -111,7 +146,25 @@ void list()
 {
 	for(int i=0;i<n;i++)
 	{
-		cout<<"工号："<<zggz[i].num<<endl;
+		printf("工号：");
+		printf("%s",zggz[i].num);
+	    printf("\n名字：");
+		printf("%s",zggz[i].name);
+		printf("\n岗位工资：");
+		printf("%g",zggz[i].pay_gw);
+		printf("\n薪级工资：");
+		printf("%g",zggz[i].pay_xinji);
+		printf("\n职务津贴：");
+		printf("%g",zggz[i].pay_zw);
+		printf("\n绩效工资：");
+		printf("%g",zggz[i].pay_xiaoji);
+		printf("\n应发工资：");
+		printf("%g",zggz[i].pay_yf);
+		printf("\n个人所得税：");
+		printf("%g",zggz[i].duty);
+		printf("\n实发工资：");
+		printf("%g",zggz[i].pay_sf);
+		/*cout<<"工号："<<zggz[i].num<<endl;
 		cout<<"名字："<<zggz[i].name<<endl;
 		cout<<"岗位工资："<<zggz[i].pay_gw<<endl;
 		cout<<"薪级工资："<<zggz[i].pay_xinji<<endl;
@@ -119,7 +172,7 @@ void list()
 		cout<<"绩效工资："<<zggz[i].pay_xiaoji<<endl;
 		cout<<"应发工资："<<zggz[i].pay_yf<<endl;
 		cout<<"个人所得税："<<zggz[i].duty<<endl;
-		cout<<"实发工资："<<zggz[i].pay_sf<<endl;
+		cout<<"实发工资："<<zggz[i].pay_sf<<endl;*/
 	}
 }			//浏览职工工资数据函数
 void modify()
@@ -131,17 +184,18 @@ void modify()
 	{
 		if(!strcmp(gonghao,zggz[i].num))
 		{
-			cout<<"开始修改"<<endl;
-		    cout<<"名字：";
-			cin>>zggz[i].name;
-		    cout<<"岗位工资：";
-			cin>>zggz[i].pay_gw;
-		    cout<<"薪级工资：";
-			cin>>zggz[i].pay_xinji;
-		    cout<<"职务津贴：";
-			cin>>zggz[i].pay_zw;
-		    cout<<"绩效工资：";
-			cin>>zggz[i].pay_xiaoji;
+			printf("\n开始修改\n");
+		    printf("\n请输入姓名\n");
+			scanf("%s", zggz[i].name);
+			printf("\n岗位工资：\n");
+			scanf("%f", &zggz[i].pay_gw);
+			printf("\n薪级工资：\n");
+			scanf("%f", &zggz[i].pay_xinji);
+			printf("\n职务津贴：\n");
+			scanf("%f", &zggz[i].pay_zw);
+			printf("\n绩效工资：\n");
+			scanf("%f", &zggz[i].pay_xiaoji);
+			grsds(i);
 		}
 	
 	}
@@ -199,12 +253,27 @@ void del()
 void add()
 {
 	int add_num;
-	cout<<"请输入需存入的职工人数："<<endl;
-	cin>>add_num;
+	printf("请输入需存入的职工人数：\n");
+	scanf("%d", &add_num);
 	for(int i=n;i<n+add_num;++i)
 	{
-		cin>>zggz[i].num>>zggz[i].name>>zggz[i].pay_gw>>zggz[i].pay_xinji>>zggz[i].pay_zw>>zggz[i].pay_xiaoji;
+		printf("\n请输入工号\n");
+		scanf("%s", zggz[i].num);
+		printf("\n请输入姓名\n");
+		scanf("%s", zggz[i].name);
+		printf("\n岗位工资：\n");
+		scanf("%f", &zggz[i].pay_gw);
+		printf("\n薪级工资：\n");
+		scanf("%f", &zggz[i].pay_xinji);
+		printf("\n职务津贴：\n");
+		scanf("%f", &zggz[i].pay_zw);
+		printf("\n绩效工资：\n");
+		scanf("%f", &zggz[i].pay_xiaoji);
 		zggz[i].pay_yf=zggz[i].pay_gw+zggz[i].pay_xiaoji+zggz[i].pay_xinji+zggz[i].pay_zw;
+		grsds(i); 
+
+		/*cin>>zggz[i].num>>zggz[i].name>>zggz[i].pay_gw>>zggz[i].pay_xinji>>zggz[i].pay_zw>>zggz[i].pay_xiaoji;
+		zggz[i].pay_yf=zggz[i].pay_gw+zggz[i].pay_xiaoji+zggz[i].pay_xinji+zggz[i].pay_zw;*/
 	}
 		n=n+add_num;
 
@@ -213,76 +282,65 @@ void add()
 
 int main()
 {
-read();
-
-	for(int for_main=0;for_main<=1;)
+	read();
+    for(int for_main=0;for_main<=1;)
 	{
 		int choose_num;
-	   
-	cout<<"欢迎使用职工管理系统"<<endl;
-	cout<<"请选择你要使用的功能（键盘输入数字，回车确认）"<<endl;
-	cout<<"1.查询"<<"\n"<<"2.修改"<<"\n"<<"3.添加"<<"\n"<<"4.删除"<<"\n"<<"5.浏览"<<"\n"<<"6.保存"<<"\n"<<"7.退出"<<endl;
-	cin>>choose_num;
-	if(choose_num<8&&choose_num>0)
-	{
-	switch(choose_num)
-	{
-	    case 1:
-			{
-				cout<<"已进入查询模块";
-			    find();
-			    break;
-			}
-		case 2:
-			{
-				cout<<"已进入修改模块";
-			    modify();
-			    break;
-			}
-			
-	    case 3: 
-			{
-			cout<<"已进入添加模块";
-			add();
-			break;
-			}
-		
-
-
-
-
-
-
-
-
-
-	case 4:
+		printf("\n欢迎使用职工管理系统");
+		printf("\n请选择你要使用的功能（键盘输入数字，回车确认）");
+		printf("\n1.查询\n2.修改\n3.添加\n4.删除\n5.浏览\n6.保存\n7.退出\n");
+		scanf("%d", &choose_num);
+		if(choose_num<8&&choose_num>0)
 		{
-			cout<<"已进入删除模块";
-			del();
-			break;
-		}
-	case 5:
+			switch(choose_num)
+			{
+			    case 1:
+					{
+						printf("\n已进入查询模块");
+						find();
+			            break;
+					}
+				case 2:
+					{
+						printf("\n已进入修改模块");
+			            modify();
+			            break;
+					}
+				case 3: 
+					{
+			            printf("\n已进入添加模块");
+			            add();
+			            break;
+					}
+		        case 4:
+					{
+			            printf("\n已进入删除模块");
+			            del();
+			            break;
+					}
+				case 5:
+					{
+			            printf("\n已进入浏览模块");
+			            list();
+			            break;
+					}
+				case 6:
+					{
+			            printf("\n已保存");
+			            write();
+			            break;
+					}
+				case 7:
+					{
+						printf("\n系统退出，欢迎再次使用！");
+		                for_main=2;break;
+					}
+			}
+	}
+		else
 		{
-			cout<<"已进入浏览模块";
-			list();
-			break;
+			printf("\n请重新选择功能");
 		}
-	case 6:
-		{
-			cout<<"已保存";
-			write();
-			break;
-		}
-	case 7:
-		{cout<<"系统退出，欢迎再次使用！";
-		   for_main=2;break;
-		}
-	}
-	}
-	else{
-		cout<<"请重新选择功能"<<endl;
-	}
 	}
 
    	
