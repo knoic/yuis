@@ -176,24 +176,24 @@ void list()
 {
 	for(int i=0;i<n;i++)
 	{
-		printf("工号：");
+		printf("\n         工号：");
 		printf("%s",zggz[i].num);
-	    printf("\n名字：");
+	    printf("\n         名字：");
 		printf("%s",zggz[i].name);
-		printf("\n岗位工资：");
+		printf("\n         岗位工资：");
 		printf("%g",zggz[i].pay_gw);
-		printf("\n薪级工资：");
+		printf("\n         薪级工资：");
 		printf("%g",zggz[i].pay_xinji);
-		printf("\n职务津贴：");
+		printf("\n         职务津贴：");
 		printf("%g",zggz[i].pay_zw);
-		printf("\n绩效工资：");
+		printf("\n         绩效工资：");
 		printf("%g",zggz[i].pay_xiaoji);
-		printf("\n应发工资：");
+		printf("\n         应发工资：");
 		printf("%g",zggz[i].pay_yf);
-		printf("\n个人所得税：");
+		printf("\n         个人所得税：");
 		printf("%g",zggz[i].duty);
-		printf("\n实发工资：");
-		printf("%g",zggz[i].pay_sf);
+		printf("\n         实发工资：");
+		printf("%g\n",zggz[i].pay_sf);
 	}
 }			//浏览职工工资数据函数
 
@@ -304,9 +304,18 @@ int main()
     for(int for_main=0;for_main<=1;)
 	{
 		int choose_num;
-		printf("\n欢迎使用职工管理系统");
-		printf("\n请选择你要使用的功能（键盘输入数字，回车确认）");
-		printf("\n1.查询\n2.修改\n3.添加\n4.删除\n5.浏览\n6.保存\n7.退出\n");
+		printf("\n        ### 欢迎使用广西民族大学软件与信息安全学院职工工资管理系统 ###");
+		printf("\n\n\n        请选择 <1 - 7> :");
+		printf("\n        ==============================================================");
+		printf("\n        |      1.查询职工工资记录                                    |");
+		printf("\n        |      2.修改                                                |");
+		printf("\n        |      3.添加                                                |");
+		printf("\n        |      4.删除                                                |");
+		printf("\n        |      5.保存数据到文件                                      |");
+		printf("\n        |      6.浏览职工记录                                        |");
+		printf("\n        |      7.退出系统                                            |");
+		printf("\n        ==============================================================");
+		printf("\n         你的选择是:");
 		scanf("%d", &choose_num);
 		if(choose_num<8&&choose_num>0)
 		{
@@ -314,43 +323,43 @@ int main()
 			{
 			    case 1:
 					{
-						printf("\n已进入查询模块");
+						printf("\n已进入查询模块\n");
 						find();
 			            break;
 					}
 				case 2:
 					{
-						printf("\n已进入修改模块");
+						printf("\n已进入修改模块\n");
 			            modify();
 			            break;
 					}
 				case 3: 
 					{
-			            printf("\n已进入添加模块");
+			            printf("\n已进入添加模块\n");
 			            add();
 			            break;
 					}
 		        case 4:
 					{
-			            printf("\n已进入删除模块");
+			            printf("\n已进入删除模块\n");
 			            del();
 			            break;
 					}
 				case 5:
 					{
-			            printf("\n已进入浏览模块");
-			            list();
+			            printf("\n已保存\n");
+			            write();
 			            break;
 					}
 				case 6:
 					{
-			            printf("\n已保存");
-			            write();
+						printf("\n已进入浏览模块\n");
+			            list();
 			            break;
 					}
 				case 7:
 					{
-						printf("\n系统退出，欢迎再次使用！");
+						printf("\n系统退出，欢迎再次使用！\n");
 		                for_main=2;break;
 					}
 			}
