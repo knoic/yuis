@@ -1,11 +1,8 @@
 /*************************************************
 Copyright (C), 1988-1999, Huawei Tech. Co., Ltd.
 File name: main.cpp
-Author: Zhuchuankai Version: 0.1 Date: 2018-6-28// 作者、版本及完成日期
-Description: // 用于详细说明此程序文件完成的主要功能，与其他模块
-// 或函数的接口，输出值、取值范围、含义及参数间的控
-// 制、顺序、独立或依赖等关系
-Others: // 其它内容的说明
+Author: Zhuchuankai Version: 0.1 Date: 2018-6-28
+Description: // 职工工资管理
 Function List: // 主要函数列表，每条记录应包括函数名及功能简要说明
 1.grsds(int i)---------税计算
 2.read()---------------读取职工工资数据函数,主函数执行时要调用和必须调用的第一个函数
@@ -17,7 +14,7 @@ Function List: // 主要函数列表，每条记录应包括函数名及功能简要说明
 8.add()----------------添加职工工资数据函数
 History: // 修改历史记录列表，每条修改记录应包括修改日期、修改
 // 者及修改内容简述
-1. Date:
+1. Date:  2018-6-18-----2018-6-29
 Author:
 Modification:
 2. ...
@@ -42,7 +39,14 @@ struct zggz
 }zggz[100];
 
 
-void grsds(int i)           //税计算
+/*************************************************
+Function: // grsds
+Description: // 个人所得税计算
+Calls: // 无
+Called By: // modify(), add()
+Output: // 对zggz[i].duty赋值
+*************************************************/
+void grsds(int i)           
 {
     printf("税计算：");
 
@@ -98,6 +102,14 @@ void grsds(int i)           //税计算
 
 }
 
+/*************************************************
+Function: // read
+Description: // 读取职工工资数据函数,主函数执行时要调用和必须调用的第一个函数
+Called By: // main()
+Input: // 本地文件的读取
+Output: // 将本地文件数据存入zggz[]
+Return: // 函数返回值的说明
+*************************************************/
 int read()
 {
 	FILE*fp;
@@ -119,8 +131,14 @@ int read()
     cout<<n<<endl;                          //测试用人数统计
 
 	return 0;
-}       //读取职工工资数据函数,主函数执行时要调用和必须调用的第一个函数
+}       
 
+/*************************************************
+Function: // write
+Description: // 保存职工工资数据函数
+Called By: // main()
+Output: // 将zggz[]数据存入本地文件
+*************************************************/
 int write()
 {
 	FILE *fp ;
@@ -131,8 +149,15 @@ int write()
 	}
     fwrite( (char*)zggz , sizeof(struct zggz), n , fp ); //将数组写入文件
 	fclose(fp);
-};        //保存职工工资数据函数
+};        
 
+/*************************************************
+Function: // find
+Description: // 查询职工工资数据函数
+Called By: // main()
+Input: // 键盘键入工号
+Output: // 输出特定职工数据
+*************************************************/
 int find()
 {
 	char gonghao[10];
@@ -170,33 +195,45 @@ int find()
 	}
 	return 0;
 	
-};		 //查询职工工资数据函数
+};		 
 
+/*************************************************
+Function: // list
+Description: //浏览职工工资数据函数
+Called By: // main()
+Output: // 输出全部职工数据
+*************************************************/
 void list()
 {
 	for(int i=0; i<n; i++)
 	{
-		printf("\n         工号：");
+		printf("         工号：");
 		printf("%s",zggz[i].num);
-	    printf("\n         名字：");
+	    printf("              名字：");
 		printf("%s",zggz[i].name);
 		printf("\n         岗位工资：");
 		printf("%g",zggz[i].pay_gw);
-		printf("\n         薪级工资：");
+		printf("              薪级工资：");
 		printf("%g",zggz[i].pay_xinji);
 		printf("\n         职务津贴：");
 		printf("%g",zggz[i].pay_zw);
-		printf("\n         绩效工资：");
+		printf("              绩效工资：");
 		printf("%g",zggz[i].pay_xiaoji);
 		printf("\n         应发工资：");
 		printf("%g",zggz[i].pay_yf);
-		printf("\n         个人所得税：");
+		printf("              个人所得税：");
 		printf("%g",zggz[i].duty);
 		printf("\n         实发工资：");
 		printf("%g\n",zggz[i].pay_sf);
 	}
-}			//浏览职工工资数据函数
+}		
 
+/*************************************************
+Function: // read
+Description: 	// 修改职工工资数据函数
+Called By: // main()
+Input: // 键盘键入工号
+*************************************************/
 void modify()
 {
 	char gonghao[10];
@@ -228,8 +265,15 @@ void modify()
 		printf("查无此人\n");
 	}
 
-};			//修改职工工资数据函数
+};		
 
+/*************************************************
+Function: // del
+Description: //删除职工工资数据函数
+Called By: // main()
+Input: // 键盘键入工号
+Output: // 修改zggz[]数据
+*************************************************/
 void del()
 {
 	char gonghao[10],choose[1];
@@ -254,6 +298,7 @@ void del()
 					zggz[j].pay_xinji = zggz[j+1].pay_xinji;
 					zggz[j].pay_yf = zggz[j+1].pay_yf;
 					zggz[j].pay_zw = zggz[j+1].pay_zw;
+					zggz[j].duty = zggz[j+1].duty;
 				}
 				n = n-1;
 				printf("删除完成，请及时保存\n");
@@ -269,8 +314,15 @@ void del()
 	{
 		printf("查无此人\n");
 	}
-};				//删除职工工资数据函数
+};				
 
+/*************************************************
+Function: // add
+Description: // 添加职工数据
+Called By: // main()
+Input: // 键盘键入职工数据
+Output: // 将数据存入zggz[]
+*************************************************/
 void add()
 {
 	int add_num;
