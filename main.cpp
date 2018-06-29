@@ -138,7 +138,7 @@ int find()
 	char gonghao[10];
 	printf("请输入查询工号：\n");
 	scanf("%s", gonghao);
-	for(int i=0;i<n;i++)
+	for(int i=0; i<n; i++)
 	{
 		if(!strcmp(gonghao,zggz[i].num))
 		{
@@ -174,7 +174,7 @@ int find()
 
 void list()
 {
-	for(int i=0;i<n;i++)
+	for(int i=0; i<n; i++)
 	{
 		printf("\n         工号：");
 		printf("%s",zggz[i].num);
@@ -202,7 +202,7 @@ void modify()
 	char gonghao[10];
 	cout<<"请输入查询工号："<<endl;
 	cin>>gonghao;
-	for(int i=0;i<n;i++)
+	for(int i=0; i<n; i++)
 	{
 		if(!strcmp(gonghao,zggz[i].num))
 		{
@@ -235,7 +235,7 @@ void del()
 	char gonghao[10],choose[1];
 	printf("请输入需要修改的职工工号\n");
 	scanf("%s", gonghao);
-	for(int i=0;i<n;i++)
+	for(int i=0; i<n; i++)
 	{
 		if(!strcmp(gonghao,zggz[i].num))
 		{
@@ -276,7 +276,7 @@ void add()
 	int add_num;
 	printf("请输入需存入的职工人数：\n");
 	scanf("%d", &add_num);
-	for(int i=n;i<n+add_num;++i)
+	for(int i=n; i<n+add_num; ++i)
 	{
 		printf("\n请输入工号\n");
 		scanf("%s", zggz[i].num);
@@ -301,7 +301,7 @@ void add()
 int main()
 {
 	read();
-    for(int for_main=0;for_main<=1;)
+    for(int for_main=0; for_main<=1; )
 	{
 		int choose_num;
 		printf("\n        ### 欢迎使用广西民族大学软件与信息安全学院职工工资管理系统 ###");
