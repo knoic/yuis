@@ -19,10 +19,8 @@ Author:
 Modification:
 2. ...
 *************************************************/
-#include<iostream>
 #include<stdio.h>
 #include<string>
-#include<fstream>
 using namespace std;
 long n;
 struct zggz
@@ -122,8 +120,6 @@ int read()
 
     fread( (char*)zggz , sizeof(struct zggz), n , fp ); //从文件中读n个结构体的数据
 	fclose(fp);
-
-    cout<<n<<endl;                          //测试用人数统计
 
 	return 0;
 }       
@@ -232,8 +228,8 @@ Input: // 键盘键入工号
 void modify()
 {
 	char gonghao[10];
-	cout<<"请输入查询工号："<<endl;
-	cin>>gonghao;
+	printf("\n请输入查询工号：\n");
+	scanf("%s", gonghao);
 	for(int i=0; i<n; i++)
 	{
 		if(!strcmp(gonghao,zggz[i].num))
@@ -272,7 +268,7 @@ Output: // 修改zggz[]数据
 void del()
 {
 	char gonghao[10],choose[1];
-	printf("请输入需要修改的职工工号\n");
+	printf("请输入需要删除的职工工号\n");
 	scanf("%s", gonghao);
 	for(int i=0; i<n; i++)
 	{
