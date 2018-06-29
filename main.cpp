@@ -370,30 +370,35 @@ int main()
 			{
 			    case 1:
 					{
+						system("cls");
 						printf("\n已进入查询模块\n");
 						find();
 			            break;
 					}
 				case 2:
 					{
+						system("cls");
 						printf("\n已进入修改模块\n");
 			            modify();
 			            break;
 					}
 				case 3: 
 					{
+						system("cls");
 			            printf("\n已进入添加模块\n");
 			            add();
 			            break;
 					}
 		        case 4:
 					{
+						system("cls");
 			            printf("\n已进入删除模块\n");
 			            del();
 			            break;
 					}
 				case 5:
 					{
+						system("cls");
 			            printf("\n已保存\n");
 			            write();
 			            break;
@@ -406,6 +411,7 @@ int main()
 					}
 				case 7:
 					{
+						system("cls");
 						printf("\n系统退出，欢迎再次使用！\n");
 		                for_main=2;
 						break;
@@ -414,7 +420,8 @@ int main()
 	}
 		else
 		{
-			printf("\n请重新选择功能");
+			system("cls");
+			printf("\n请重新选择功能<1 - 7>");
 		}
 	}
     system("pause");
