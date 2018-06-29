@@ -44,7 +44,7 @@ Calls: // 无
 Called By: // modify(), add()
 Output: // 对zggz[i].duty赋值
 *************************************************/
-void grsds(int i)           
+void grsds(int i)           //调用函数时，常处于for循环语句，故使用与循环变量同名的i
 {
     printf("税计算：");
 
