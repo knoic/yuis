@@ -360,7 +360,8 @@ int main()
 				case 7:
 					{
 						printf("\n系统退出，欢迎再次使用！\n");
-		                for_main=2;break;
+		                for_main=2;
+						break;
 					}
 			}
 	}
