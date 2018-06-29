@@ -46,9 +46,7 @@ Output: // 对zggz[i].duty赋值
 *************************************************/
 void grsds(int i)           //调用函数时，常处于for循环语句，故使用与循环变量同名的i
 {
-    printf("税计算：");
-
-	if(zggz[i].pay_yf <= 500)
+    if(zggz[i].pay_yf <= 500)
     {
         zggz[i].duty = zggz[i].pay_yf*0.05;
     }
