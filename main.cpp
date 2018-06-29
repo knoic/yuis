@@ -75,11 +75,6 @@ void grsds(int i)
         zggz[i].duty = (zggz[i].pay_yf - 20000) * 0.25 + 15000 * 0.2 + 3000 * 0.15 + 1500 * 0.1 + 500 * 0.05;
     }
 
-	else if(zggz[i].pay_yf <= 40000 && zggz[i].pay_yf > 20000)
-    {
-        zggz[i].duty = (zggz[i].pay_yf - 20000) * 0.25 + 15000 * 0.2 + 3000 * 0.15 + 1500 * 0.1 + 500 * 0.05;
-    }
-
 	else if(zggz[i].pay_yf <= 60000 && zggz[i].pay_yf > 40000)
     {
         zggz[i].duty = (zggz[i].pay_yf - 40000) * 0.3 + 20000 * 0.25 + 15000 * 0.2 + 3000 * 0.15 + 1500 * 0.1 + 500 * 0.05;
