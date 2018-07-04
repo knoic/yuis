@@ -46,50 +46,58 @@ Output: // 对zggz[i].duty赋值
 *************************************************/
 void grsds(int i)           //调用函数时，常处于for循环语句，故使用与循环变量同名的i
 {
-    if(zggz[i].pay_yf <= 500)
-    {
-        zggz[i].duty = zggz[i].pay_yf*0.05;
-    }
+	float zggz_yns;         //应纳税所得额
+	if(zggz[i].pay_yf <= 3500)
+	{
+		zggz[i].duty=0;
+	}
+	else
+	{
+		zggz_yns=zggz[i].pay_yf-3500;
+		if(zggz_yns <= 500)
+        {
+            zggz[i].duty = zggz_yns*0.05;
+        }
+		else if(zggz_yns <= 2000 && zggz_yns > 500)
+		{
+            zggz[i].duty = (zggz_yns-500) * 0.1 + 500 * 0.05;
+        }
 
-    else if(zggz[i].pay_yf <= 2000 && zggz[i].pay_yf > 500)
-    {
-        zggz[i].duty = (zggz[i].pay_yf-500) * 0.1 + 500 * 0.05;
-    }
+        else if(zggz_yns <= 5000 && zggz_yns > 2000)
+        {
+            zggz[i].duty = (zggz_yns - 2000) * 0.15 + 1500 * 0.1 + 500 * 0.05;
+        }
 
-    else if(zggz[i].pay_yf <= 5000 && zggz[i].pay_yf > 2000)
-    {
-         zggz[i].duty = (zggz[i].pay_yf - 2000) * 0.15 + 1500 * 0.1 + 500 * 0.05;
-    }
+        else if(zggz_yns <= 20000 && zggz_yns > 5000)
+        {
+            zggz[i].duty = (zggz_yns - 5000) * 0.20 + 3000 * 0.15 + 1500 * 0.1 + 500 * 0.05;
+        }
 
-    else if(zggz[i].pay_yf <= 20000 && zggz[i].pay_yf > 5000)
-    {
-        zggz[i].duty = (zggz[i].pay_yf - 5000) * 0.20 + 3000 * 0.15 + 1500 * 0.1 + 500 * 0.05;
-    }
+        else if(zggz_yns <= 40000 && zggz_yns > 20000)
+        {
+            zggz[i].duty = (zggz_yns - 20000) * 0.25 + 15000 * 0.2 + 3000 * 0.15 + 1500 * 0.1 + 500 * 0.05;
+        }
 
-    else if(zggz[i].pay_yf <= 40000 && zggz[i].pay_yf > 20000)
-    {
-        zggz[i].duty = (zggz[i].pay_yf - 20000) * 0.25 + 15000 * 0.2 + 3000 * 0.15 + 1500 * 0.1 + 500 * 0.05;
-    }
+	    else if(zggz_yns <= 60000 && zggz_yns > 40000)
+        {
+            zggz[i].duty = (zggz_yns - 40000) * 0.3 + 20000 * 0.25 + 15000 * 0.2 + 3000 * 0.15 + 1500 * 0.1 + 500 * 0.05;
+        }
 
-	else if(zggz[i].pay_yf <= 60000 && zggz[i].pay_yf > 40000)
-    {
-        zggz[i].duty = (zggz[i].pay_yf - 40000) * 0.3 + 20000 * 0.25 + 15000 * 0.2 + 3000 * 0.15 + 1500 * 0.1 + 500 * 0.05;
-    }
+	    else if(zggz_yns <= 80000 && zggz_yns > 60000)
+        {
+            zggz[i].duty = (zggz_yns - 60000) * 0.35 + 20000 * 0.3 + 20000 * 0.25 + 15000 * 0.2 + 3000 * 0.15 + 1500 * 0.1 + 500 * 0.05;
+        }
 
-	else if(zggz[i].pay_yf <= 80000 && zggz[i].pay_yf > 60000)
-    {
-        zggz[i].duty = (zggz[i].pay_yf - 60000) * 0.35 + 20000 * 0.3 + 20000 * 0.25 + 15000 * 0.2 + 3000 * 0.15 + 1500 * 0.1 + 500 * 0.05;
-    }
+	    else if(zggz_yns <= 100000 && zggz_yns > 80000)
+        {
+            zggz[i].duty = (zggz_yns - 80000) * 0.4 + 20000 * 0.35 + 20000 * 0.3 + 20000 * 0.25 + 15000 * 0.2 + 3000 * 0.15 + 1500 * 0.1 + 500 * 0.05;
+        }
 
-	else if(zggz[i].pay_yf <= 100000 && zggz[i].pay_yf > 80000)
-    {
-        zggz[i].duty = (zggz[i].pay_yf - 80000) * 0.4 + 20000 * 0.35 + 20000 * 0.3 + 20000 * 0.25 + 15000 * 0.2 + 3000 * 0.15 + 1500 * 0.1 + 500 * 0.05;
-    }
-
-	else if(zggz[i].pay_yf > 100000)
-    {
-        zggz[i].duty = (zggz[i].pay_yf - 100000) * 0.45 + 20000 * 0.4 + 20000 * 0.35 + 20000 * 0.3 + 20000 * 0.25 + 15000 * 0.2 + 3000 * 0.15 + 1500 * 0.1 + 500 * 0.05;
-    }
+	    else if(zggz_yns > 100000)
+        {
+            zggz[i].duty = (zggz_yns - 100000) * 0.45 + 20000 * 0.4 + 20000 * 0.35 + 20000 * 0.3 + 20000 * 0.25 + 15000 * 0.2 + 3000 * 0.15 + 1500 * 0.1 + 500 * 0.05;
+        }
+	}
 
 }
 
@@ -118,7 +126,6 @@ int read()
 
     fread( (char*)zggz , sizeof(struct zggz), n , fp ); //从文件中读n个结构体的数据
 	fclose(fp);
-
 	return 0;
 }       
 
