@@ -1,9 +1,9 @@
 /*************************************************
 Copyright (C), 1988-1999, Huawei Tech. Co., Ltd.
-File name: main.cpp
+File name: main_fin.cpp
 Author: Zhuchuankai Version: 0.1 Date: 2018-6-28
 Description: // 职工工资管理
-Function List: // 主要函数列表，每条记录应包括函数名及功能简要说明
+Function List:
 1.grsds(int i)---------税计算
 2.read()---------------读取职工工资数据函数,主函数执行时要调用和必须调用的第一个函数
 3.write()--------------保存职工工资数据函数
