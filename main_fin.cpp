@@ -113,7 +113,7 @@ Return: // 函数返回值的说明
 int read()
 {
 	FILE*fp;
-    fp=fopen("gz.dat", "a+");// localfile文件名
+    fp=fopen("gz.dat", "rb");// localfile文件名,本地必须有此文件
     fseek(fp,0,SEEK_SET);
     fseek(fp,0,SEEK_END);
 
