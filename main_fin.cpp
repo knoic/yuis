@@ -12,10 +12,10 @@ Function List: // 主要函数列表，每条记录应包括函数名及功能简要说明
 6.modify()-------------修改职工工资数据函数
 7.del()----------------删除职工工资数据函数
 8.add()----------------添加职工工资数据函数
-History: //
+History: 
 1. Date:  2018-6-18-----2018-6-29
-Author:
-Modification:
+Author:zhuchuankai
+Modification:主体编写
 2. ...
 *************************************************/
 #include<iostream>
