@@ -158,7 +158,7 @@ Output: // 输出特定职工数据
 *************************************************/
 int find()
 {
-	int i;           //循环变量
+	int i,k=0;           //循环变量,判断变量
 	char gonghao[10];
 	printf("请输入查询工号：\n");
 	scanf("%s", gonghao);
@@ -184,14 +184,16 @@ int find()
 			printf("%f",zggz[i].duty);
 			printf("\n实发工资：");
 			printf("%f",zggz[i].pay_sf);
-            break;
+			k=1;
+            
 		}
 	
 	}
-	if(i==n)
+	if(k==0)
 	{
-		printf("查无此人\n");
+		printf("\n查无此人：");
 	}
+	
 	return 0;
 	
 };		 
@@ -235,7 +237,7 @@ Input: // 键盘键入工号
 *************************************************/
 void modify()
 {
-	int i;           //循环变量
+	int i,k=0;           //循环变量,判断变量
 	char gonghao[10];
 	printf("\n请输入查询工号：\n");
 	scanf("%s", gonghao);
@@ -257,12 +259,13 @@ void modify()
 			zggz[i].pay_yf=zggz[i].pay_gw+zggz[i].pay_xiaoji+zggz[i].pay_xinji+zggz[i].pay_zw;
 		    grsds(i);
 		    zggz[i].pay_sf=zggz[i].pay_yf-zggz[i].duty;
+			k=1;
 		}
 	
 	}
-	if(i==n)
+	if(k==0)
 	{
-		printf("查无此人\n");
+		printf("\n查无此人：");
 	}
 
 };		
@@ -276,7 +279,7 @@ Output: // 修改zggz[]数据
 *************************************************/
 void del()
 {
-	int i;           //循环变量
+	int i,k=0;           //循环变量,判断变量
 	char gonghao[10],choose[1];
 	printf("请输入需要删除的职工工号\n");
 	scanf("%s", gonghao);
@@ -284,6 +287,7 @@ void del()
 	{
 		if(!strcmp(gonghao, zggz[i].num))
 		{
+			k=1;
 			printf("是否确认删除该记录?（请输入y/n）\n");
 			scanf("%s", choose);
 			if(!strcmp(choose, "y"))
@@ -311,9 +315,9 @@ void del()
 		}
 	
 	}
-	if(i==n)
+	if(k==0)
 	{
-		printf("查无此人\n");
+		printf("\n查无此人：");
 	}
 };				
 
