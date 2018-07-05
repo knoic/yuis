@@ -113,7 +113,7 @@ Return: // 函数返回值的说明
 int read()
 {
 	FILE*fp;
-    fp=fopen("gz.dat", "rb");// localfile文件名,本地必须有此文件
+    fp=fopen("gz.dat", "a+");// localfile文件名,本地必须有此文件
     fseek(fp,0,SEEK_SET);
     fseek(fp,0,SEEK_END);
 
@@ -244,8 +244,28 @@ void modify()
 	{
 		if(!strcmp(gonghao,zggz[i].num))
 		{
-			printf("\n开始修改\n");
-		    printf("\n请输入姓名\n");
+			printf("\n已查询到此人");
+			printf("\n工号：");
+			printf("%s",zggz[i].num);
+			printf("\n名字：");
+			printf("%s",zggz[i].name);
+			printf("\n岗位工资：");
+			printf("%f",zggz[i].pay_gw);
+			printf("\n薪级工资：");
+			printf("%f",zggz[i].pay_xinji);
+			printf("\n职务津贴：");
+			printf("%f",zggz[i].pay_zw);
+			printf("\n绩效工资：");
+			printf("%f",zggz[i].pay_xiaoji);
+			printf("\n应发工资：");
+			printf("%f",zggz[i].pay_yf);
+			printf("\n个人所得税：");
+			printf("%f",zggz[i].duty);
+			printf("\n实发工资：");
+			printf("%f",zggz[i].pay_sf);
+
+			printf("\n\n开始修改\n");
+		    printf("请输入姓名\n");
 			scanf("%s", zggz[i].name);
 			printf("\n岗位工资：\n");
 			scanf("%f", &zggz[i].pay_gw);
